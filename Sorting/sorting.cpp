@@ -56,13 +56,35 @@ void selectionSort(int arr[], int n) {
   }
 }
 
+void countSort(int arr[], int n) {
+  int maxi = INT_MIN;
+  for (int i{}; i < n; i++) {
+    maxi = max(maxi, arr[i]);
+  }
+
+  vector<int> countarr(maxi + 1, 0);
+
+  for (int i{}; i < n; i++) {
+    countarr[arr[i]]++;
+  }
+
+  for (int i{}, j{}; i <= maxi; i++) {
+    while (countarr[i]) {
+      arr[j] = i;
+      countarr[i]--;
+      j++;
+    }
+  }
+}
+
 int main(int argc, char *argv[]) {
-  int arr[] = {64, 25, 13, 22, 11};
+  int arr[] = {64, 13, 11, 25, 13, 22, 11};
   int n = sizeof(arr) / sizeof(arr[0]);
 
   /* bubbleSort(arr, n); */
   /* insertionSort(arr, n); */
-  selectionSort(arr, n);
+  /* selectionSort(arr, n); */
+  countSort(arr, n);
   cout << "Sorted array: \n";
   printArray(arr, n);
 
